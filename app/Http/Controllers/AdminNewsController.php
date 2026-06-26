@@ -29,27 +29,21 @@ class AdminNewsController extends Controller
     /**
      * Menyimpan Data Berita Baru ke Database
      */
-    public function store(Request $request)
+   public function store(Request $request)
     {
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'image' => 'nullable|string', // <-- Ubah validasi jadi string/URL teks biasa
         ]);
 
-        $data = $request->only(['title', 'content']);
+        $data = $request->only(['title', 'content', 'image']);
 
-        if ($request->hasFile('image')) {
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
-            $data['image'] = $imageName;
-        }
+        // HAPUS ATAU KOMENTARI PROSES $request->image->move() YANG LAMA
 
-        News::create($data);
-
-        return redirect()->route('admin.news.index')->with('success', 'Berita sukses ditambahkan!');
+        \App\Models\News::create($data);
+        return redirect()->route('admin.news.index')->with('success', 'Berita berhasil ditambahkan!');
     }
-
     /**
      * Form Edit Berita
      */
