@@ -12,7 +12,7 @@
 
 <div class="row g-5 mb-5">
     <div class="col-md-6">
-        <img src="{{ asset($service->image) }}"
+        <img src="{{ asset('images/' . $service->image) }}"
              class="img-fluid rounded-4 shadow"
              style="width:100%; height:380px; object-fit:cover;"
              alt="{{ $service->name }}">
@@ -91,7 +91,7 @@
     @foreach($others as $item)
     <div class="col-md-4">
         <div class="card border-0 shadow-sm h-100" style="border-radius:12px; overflow:hidden;">
-            <img src="{{ asset($item->image) }}"
+            <img src="{{ asset('images/' . $item->image) }}"
                  style="height:160px; object-fit:cover;"
                  class="card-img-top"
                  alt="{{ $item->name }}">
