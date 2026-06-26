@@ -9,6 +9,8 @@ class HomeController extends Controller
 {
     public function index()
     {
+        // JIKA ERROR: Jika file home.blade.php Anda ada di dalam folder 'pages',
+        // ubah kode di bawah ini menjadi: return view('pages.home');
         return view('home');
     }
 
@@ -23,12 +25,9 @@ class HomeController extends Controller
         return view('pages.services', compact('services'));
     }
 
-    /**
-     * KODE FINAL DETAIL LAYANAN (FIX ERROR $OTHERS)
-     */
     public function serviceDetail($id)
     {
-        // 1. Ambil data layanan utama berdasarkan ID
+        // 1. Ambil data utama berdasarkan ID
         $service = Service::findOrFail($id);
 
         // 2. Ambil maksimal 3 layanan lain untuk rekomendasi di bagian bawah halaman
@@ -50,7 +49,6 @@ class HomeController extends Controller
 
     public function news()
     {
-        // Jika Anda memiliki model News, bisa disesuaikan di sini nanti
         return view('pages.news');
     }
 
