@@ -54,12 +54,13 @@ class HomeController extends Controller
 
     public function newsDetail($id)
     {
-        // Masukkan sekalian logic detail berita agar tidak error saat diklik nanti
-        $newsItem = News::findOrFail($id);
+        // 1. Ambil data berita berdasarkan ID, simpan ke variabel $news (sesuai Blade)
+        $news = News::findOrFail($id);
         
-        // Ambil berita lain untuk rekomendasi di halaman detail berita
+        // 2. Ambil 3 berita lain untuk rekomendasi di bagian bawah jika ada
         $otherNews = News::where('id', '!=', $id)->latest()->take(3)->get();
 
-        return view('pages.news-detail', compact('newsItem', 'otherNews'));
+        // 3. Masukkan 'news' dan 'otherNews' ke dalam compact
+        return view('pages.news-detail', compact('news', 'otherNews'));
     }
 }
