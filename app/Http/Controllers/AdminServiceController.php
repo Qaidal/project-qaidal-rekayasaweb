@@ -44,7 +44,7 @@ class AdminServiceController extends Controller
     {
         $service = Service::findOrFail($id);
         $others = Service::where('id', '!=', $id)->take(3)->get();
-        return view('admin.services.edit', compact('service'));
+        return view('admin.services.edit', compact('service','others'));
     }
 
     public function update(Request $request, $id)
