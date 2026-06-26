@@ -9,16 +9,23 @@
 
     <div class="card shadow-sm">
         <div class="card-body">
-            <form action="{{ route('admin.news.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.news.store') }}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="title" class="form-label fw-bold">Judul Berita</label>
                     <input type="text" name="title" class="form-control" id="title" required>
                 </div>
+                
                 <div class="mb-3">
-                    <label for="image" class="form-label fw-bold">Foto Sampul Berita</label>
-                    <input type="file" name="image" class="form-control" id="image" accept="image/*">
+                    <label for="image" class="form-label fw-bold">Link URL Foto Berita</label>
+                    <input type="text" 
+                           name="image" 
+                           class="form-control" 
+                           id="image" 
+                           placeholder="Contoh: https://images.unsplash.com/photo-xxx...">
+                    <small class="text-muted">Gunakan tautan gambar langsung dari internet (misal: Unsplash, Imgur, atau Postimages).</small>
                 </div>
+
                 <div class="mb-3">
                     <label for="content" class="form-label fw-bold">Isi Konten Berita</label>
                     <textarea name="content" class="form-control" id="content" rows="6" required></textarea>
